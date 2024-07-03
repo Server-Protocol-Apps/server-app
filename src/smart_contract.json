@@ -1,0 +1,879 @@
+{
+  "address": "8Jy1eMYr3fjGHBAbW5ebT5tTssXtB4BQpWRzZRHk4HMg",
+  "metadata": {
+    "name": "smart_contract",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "add_repo",
+      "discriminator": [
+        68,
+        182,
+        211,
+        108,
+        247,
+        131,
+        93,
+        82
+      ],
+      "accounts": [
+        {
+          "name": "repo",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  112,
+                  111
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "payload.repo.owner"
+              },
+              {
+                "kind": "arg",
+                "path": "payload.repo.name"
+              },
+              {
+                "kind": "arg",
+                "path": "payload.repo.branch"
+              }
+            ]
+          }
+        },
+        {
+          "name": "publisher",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "payload",
+          "type": {
+            "defined": {
+              "name": "AddRepoPayload"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "claim_rewards",
+      "discriminator": [
+        4,
+        144,
+        132,
+        71,
+        116,
+        23,
+        151,
+        80
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "repo",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  112,
+                  111
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "payload.repo.owner"
+              },
+              {
+                "kind": "arg",
+                "path": "payload.repo.name"
+              },
+              {
+                "kind": "arg",
+                "path": "payload.repo.branch"
+              }
+            ]
+          }
+        },
+        {
+          "name": "subscription",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  117,
+                  98
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "payload.claim.user_id"
+              },
+              {
+                "kind": "account",
+                "path": "repo"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  107,
+                  101,
+                  110
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "destination",
+          "writable": true
+        },
+        {
+          "name": "rent",
+          "address": "SysvarRent111111111111111111111111111111111"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        }
+      ],
+      "args": [
+        {
+          "name": "payload",
+          "type": {
+            "defined": {
+              "name": "ClaimRewardsPayload"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "init_token",
+      "discriminator": [
+        9,
+        187,
+        206,
+        103,
+        139,
+        126,
+        246,
+        181
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true,
+          "address": "HQPPjnTkfjneJiLkyVrXcTPDyCTJF7teWXxRwRCGhaz5"
+        },
+        {
+          "name": "token_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  107,
+                  101,
+                  110
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "metadata",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "rent",
+          "address": "SysvarRent111111111111111111111111111111111"
+        },
+        {
+          "name": "token_metadata_program",
+          "address": "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "subscribe",
+      "discriminator": [
+        254,
+        28,
+        191,
+        138,
+        156,
+        179,
+        183,
+        53
+      ],
+      "accounts": [
+        {
+          "name": "repo",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  112,
+                  111
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "payload.repo.owner"
+              },
+              {
+                "kind": "arg",
+                "path": "payload.repo.name"
+              },
+              {
+                "kind": "arg",
+                "path": "payload.repo.branch"
+              }
+            ]
+          }
+        },
+        {
+          "name": "subscription",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  117,
+                  98
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "payload.user_id"
+              },
+              {
+                "kind": "account",
+                "path": "repo"
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "payload",
+          "type": {
+            "defined": {
+              "name": "SubscribePayload"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "verify_coupon",
+      "discriminator": [
+        78,
+        190,
+        99,
+        120,
+        173,
+        150,
+        19,
+        250
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "payload",
+          "type": {
+            "defined": {
+              "name": "VerifyCouponPayload"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vote_repo",
+      "discriminator": [
+        0,
+        81,
+        5,
+        105,
+        242,
+        99,
+        182,
+        117
+      ],
+      "accounts": [
+        {
+          "name": "repo",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  112,
+                  111
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "payload.repo.owner"
+              },
+              {
+                "kind": "arg",
+                "path": "payload.repo.name"
+              },
+              {
+                "kind": "arg",
+                "path": "payload.repo.branch"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vote",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  111,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "payload.user_id"
+              },
+              {
+                "kind": "account",
+                "path": "repo"
+              }
+            ]
+          }
+        },
+        {
+          "name": "voter",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "payload",
+          "type": {
+            "defined": {
+              "name": "VoteRepoPayload"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Repo",
+      "discriminator": [
+        214,
+        15,
+        57,
+        132,
+        228,
+        152,
+        190,
+        235
+      ]
+    },
+    {
+      "name": "Subscription",
+      "discriminator": [
+        64,
+        7,
+        26,
+        135,
+        102,
+        132,
+        98,
+        33
+      ]
+    },
+    {
+      "name": "Vote",
+      "discriminator": [
+        96,
+        91,
+        104,
+        57,
+        145,
+        35,
+        172,
+        155
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "VotedAlready",
+      "msg": "User has already voted"
+    },
+    {
+      "code": 6001,
+      "name": "ClaimedAlready",
+      "msg": "Commits already claimed"
+    },
+    {
+      "code": 6002,
+      "name": "InvalidCoupon",
+      "msg": "This coupon is invalid"
+    },
+    {
+      "code": 6003,
+      "name": "UnapprovedRepo",
+      "msg": "Repo needs to be approved"
+    }
+  ],
+  "types": [
+    {
+      "name": "AddRepoPayload",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "repo",
+            "type": {
+              "defined": {
+                "name": "RepoPayload"
+              }
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "u128"
+          },
+          {
+            "name": "coupon",
+            "type": {
+              "defined": {
+                "name": "Coupon"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Claim",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "commits",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "u128"
+          },
+          {
+            "name": "user_id",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ClaimRewardsPayload",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "repo",
+            "type": {
+              "defined": {
+                "name": "RepoPayload"
+              }
+            }
+          },
+          {
+            "name": "claim",
+            "type": {
+              "defined": {
+                "name": "Claim"
+              }
+            }
+          },
+          {
+            "name": "coupon",
+            "type": {
+              "defined": {
+                "name": "Coupon"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Coupon",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "signature",
+            "type": "string"
+          },
+          {
+            "name": "recovery_id",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OffChainData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "a",
+            "type": "u8"
+          },
+          {
+            "name": "b",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Repo",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "approved",
+            "type": "bool"
+          },
+          {
+            "name": "approved_timestamp",
+            "type": "u128"
+          },
+          {
+            "name": "proposed_timestamp",
+            "type": "u128"
+          },
+          {
+            "name": "votes",
+            "type": "i128"
+          },
+          {
+            "name": "total_claimed",
+            "type": "u128"
+          },
+          {
+            "name": "subscribers",
+            "type": "u128"
+          },
+          {
+            "name": "publisher",
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "owner",
+            "type": "string"
+          },
+          {
+            "name": "branch",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RepoPayload",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "branch",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SubscribePayload",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "repo",
+            "type": {
+              "defined": {
+                "name": "RepoPayload"
+              }
+            }
+          },
+          {
+            "name": "user_id",
+            "type": "string"
+          },
+          {
+            "name": "coupon",
+            "type": {
+              "defined": {
+                "name": "Coupon"
+              }
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "u128"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Subscription",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "last_claim",
+            "type": "u128"
+          },
+          {
+            "name": "total_claimed",
+            "type": "u128"
+          },
+          {
+            "name": "subscribed_at",
+            "type": "u128"
+          },
+          {
+            "name": "repo_pda",
+            "type": "pubkey"
+          },
+          {
+            "name": "user_id",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VerifyCouponPayload",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "coupon",
+            "type": {
+              "defined": {
+                "name": "Coupon"
+              }
+            }
+          },
+          {
+            "name": "data",
+            "type": {
+              "defined": {
+                "name": "OffChainData"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Vote",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "vote_type",
+            "type": {
+              "defined": {
+                "name": "VoteType"
+              }
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "u128"
+          },
+          {
+            "name": "repo_pda",
+            "type": "pubkey"
+          },
+          {
+            "name": "user_id",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VoteRepoPayload",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "repo",
+            "type": {
+              "defined": {
+                "name": "RepoPayload"
+              }
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "u128"
+          },
+          {
+            "name": "user_id",
+            "type": "string"
+          },
+          {
+            "name": "vote_type",
+            "type": {
+              "defined": {
+                "name": "VoteType"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "VoteType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Up"
+          },
+          {
+            "name": "Down"
+          }
+        ]
+      }
+    }
+  ]
+}
