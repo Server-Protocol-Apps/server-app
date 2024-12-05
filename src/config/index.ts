@@ -1,6 +1,6 @@
 import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
 
-const program = new PublicKey("8Jy1eMYr3fjGHBAbW5ebT5tTssXtB4BQpWRzZRHk4HMg");
+const program = new PublicKey("7dPueMoFZHG9Ae1GFX2FdVcZTjqFsvV6EhsUvW8Hhg8o");
 const [mintAddress] = PublicKey.findProgramAddressSync(
   [Buffer.from("token")],
   program

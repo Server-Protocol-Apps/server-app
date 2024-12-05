@@ -16,7 +16,6 @@ import { WalletDialogProvider as MaterialUIWalletDialogProvider } from "@solana/
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { clusterApiUrl, Connection } from "@solana/web3.js";
 import { NodeProps } from "@/utils/props";
-import { AnchorProvider } from "@coral-xyz/anchor";
 
 // Default styles that can be overridden by your app
 require("@solana/wallet-adapter-react-ui/styles.css");

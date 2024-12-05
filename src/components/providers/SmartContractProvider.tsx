@@ -1,6 +1,5 @@
 "use client";
 
-import { create } from "zustand";
 import { useEffect } from "react";
 import { useAnchorWallet, useConnection } from "@solana/wallet-adapter-react";
 import { SmartContract } from "@/lib/smart-contract";
@@ -12,9 +11,7 @@ import {
   Provider,
   getProvider,
 } from "@coral-xyz/anchor";
-import idl from "../../smart_contract.json";
-import { Loading } from "../Loading";
-import { Balance } from "@/lib/hooks/useBalance";
+import idl from "../../server-sc.json";
 import { useProgramStore } from "@/store/smart_contract";
 
 export const SmartContractProvider = ({

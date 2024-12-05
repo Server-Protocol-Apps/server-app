@@ -16,7 +16,7 @@ const pixelify = Pixelify_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Origin",
+  title: "Server",
   description: "Every commit counts",
 };
 

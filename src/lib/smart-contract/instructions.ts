@@ -31,7 +31,9 @@ export class Instructions {
       const sig = await fn();
       return new TxnSignature(this.program, sig, this.state);
     } catch (e: any) {
-      this.state.notify("error", e.error.errorMessage ?? e.error.message);
+      if (e?.error)
+        this.state.notify("error", e.error.errorMessage ?? e.error.message);
+      else this.state.notify("error", "Something went wrong");
     }
   }
 
@@ -91,7 +93,7 @@ export class Instructions {
     claim: ClaimPayload,
     coupon: Coupon
   ): Promise<TxnSignature | undefined> {
-    const destination = Query.getTokenAddress(this.wallet.publicKey);
+    const destination = Query.getAta(this.wallet.publicKey);
     return this.guard(() =>
       this.program.methods
         .claimRewards(Adapter.claim(repo, claim, coupon))

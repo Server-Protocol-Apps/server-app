@@ -1,7 +1,7 @@
 {
-  "address": "8Jy1eMYr3fjGHBAbW5ebT5tTssXtB4BQpWRzZRHk4HMg",
+  "address": "7dPueMoFZHG9Ae1GFX2FdVcZTjqFsvV6EhsUvW8Hhg8o",
   "metadata": {
-    "name": "smart_contract",
+    "name": "server",
     "version": "0.1.0",
     "spec": "0.1.0",
     "description": "Created with Anchor"
@@ -9,16 +9,7 @@
   "instructions": [
     {
       "name": "add_repo",
-      "discriminator": [
-        68,
-        182,
-        211,
-        108,
-        247,
-        131,
-        93,
-        82
-      ],
+      "discriminator": [68, 182, 211, 108, 247, 131, 93, 82],
       "accounts": [
         {
           "name": "repo",
@@ -27,12 +18,7 @@
             "seeds": [
               {
                 "kind": "const",
-                "value": [
-                  114,
-                  101,
-                  112,
-                  111
-                ]
+                "value": [114, 101, 112, 111]
               },
               {
                 "kind": "arg",
@@ -45,6 +31,17 @@
               {
                 "kind": "arg",
                 "path": "payload.repo.branch"
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [65, 68, 77, 73, 78]
               }
             ]
           }
@@ -72,16 +69,7 @@
     },
     {
       "name": "claim_rewards",
-      "discriminator": [
-        4,
-        144,
-        132,
-        71,
-        116,
-        23,
-        151,
-        80
-      ],
+      "discriminator": [4, 144, 132, 71, 116, 23, 151, 80],
       "accounts": [
         {
           "name": "signer",
@@ -95,12 +83,7 @@
             "seeds": [
               {
                 "kind": "const",
-                "value": [
-                  114,
-                  101,
-                  112,
-                  111
-                ]
+                "value": [114, 101, 112, 111]
               },
               {
                 "kind": "arg",
@@ -118,17 +101,36 @@
           }
         },
         {
+          "name": "admin",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [65, 68, 77, 73, 78]
+              }
+            ]
+          }
+        },
+        {
+          "name": "tokenomics",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [116, 111, 107, 101, 110, 111, 109, 105, 99, 115]
+              }
+            ]
+          }
+        },
+        {
           "name": "subscription",
           "writable": true,
           "pda": {
             "seeds": [
               {
                 "kind": "const",
-                "value": [
-                  115,
-                  117,
-                  98
-                ]
+                "value": [115, 117, 98]
               },
               {
                 "kind": "arg",
@@ -148,13 +150,7 @@
             "seeds": [
               {
                 "kind": "const",
-                "value": [
-                  116,
-                  111,
-                  107,
-                  101,
-                  110
-                ]
+                "value": [116, 111, 107, 101, 110]
               }
             ]
           }
@@ -192,23 +188,13 @@
       ]
     },
     {
-      "name": "init_token",
-      "discriminator": [
-        9,
-        187,
-        206,
-        103,
-        139,
-        126,
-        246,
-        181
-      ],
+      "name": "init",
+      "discriminator": [220, 59, 207, 236, 108, 250, 47, 100],
       "accounts": [
         {
           "name": "admin",
           "writable": true,
-          "signer": true,
-          "address": "HQPPjnTkfjneJiLkyVrXcTPDyCTJF7teWXxRwRCGhaz5"
+          "signer": true
         },
         {
           "name": "token_mint",
@@ -217,13 +203,31 @@
             "seeds": [
               {
                 "kind": "const",
-                "value": [
-                  116,
-                  111,
-                  107,
-                  101,
-                  110
-                ]
+                "value": [116, 111, 107, 101, 110]
+              }
+            ]
+          }
+        },
+        {
+          "name": "tokenomics",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [116, 111, 107, 101, 110, 111, 109, 105, 99, 115]
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin_info",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [65, 68, 77, 73, 78]
               }
             ]
           }
@@ -249,20 +253,161 @@
           "address": "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
         }
       ],
-      "args": []
+      "args": [
+        {
+          "name": "payload",
+          "type": {
+            "defined": {
+              "name": "InitPayload"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "send_to_team_wallet",
+      "discriminator": [146, 11, 215, 163, 173, 78, 26, 40],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "admin",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [65, 68, 77, 73, 78]
+              }
+            ]
+          }
+        },
+        {
+          "name": "team_account",
+          "writable": true
+        },
+        {
+          "name": "tokenomics",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [116, 111, 107, 101, 110, 111, 109, 105, 99, 115]
+              }
+            ]
+          }
+        },
+        {
+          "name": "team_account_ata",
+          "writable": true
+        },
+        {
+          "name": "token",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [116, 111, 107, 101, 110]
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_account",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "set_be",
+      "discriminator": [161, 102, 160, 39, 172, 206, 0, 188],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "admin",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [65, 68, 77, 73, 78]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "payload",
+          "type": {
+            "array": ["u8", 64]
+          }
+        }
+      ]
+    },
+    {
+      "name": "set_signer",
+      "discriminator": [127, 120, 252, 184, 97, 4, 88, 68],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "admin",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [65, 68, 77, 73, 78]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "payload",
+          "type": "pubkey"
+        }
+      ]
     },
     {
       "name": "subscribe",
-      "discriminator": [
-        254,
-        28,
-        191,
-        138,
-        156,
-        179,
-        183,
-        53
-      ],
+      "discriminator": [254, 28, 191, 138, 156, 179, 183, 53],
       "accounts": [
         {
           "name": "repo",
@@ -271,12 +416,7 @@
             "seeds": [
               {
                 "kind": "const",
-                "value": [
-                  114,
-                  101,
-                  112,
-                  111
-                ]
+                "value": [114, 101, 112, 111]
               },
               {
                 "kind": "arg",
@@ -294,17 +434,24 @@
           }
         },
         {
+          "name": "admin",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [65, 68, 77, 73, 78]
+              }
+            ]
+          }
+        },
+        {
           "name": "subscription",
           "writable": true,
           "pda": {
             "seeds": [
               {
                 "kind": "const",
-                "value": [
-                  115,
-                  117,
-                  98
-                ]
+                "value": [115, 117, 98]
               },
               {
                 "kind": "arg",
@@ -340,21 +487,23 @@
     },
     {
       "name": "verify_coupon",
-      "discriminator": [
-        78,
-        190,
-        99,
-        120,
-        173,
-        150,
-        19,
-        250
-      ],
+      "discriminator": [78, 190, 99, 120, 173, 150, 19, 250],
       "accounts": [
         {
           "name": "signer",
           "writable": true,
           "signer": true
+        },
+        {
+          "name": "admin",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [65, 68, 77, 73, 78]
+              }
+            ]
+          }
         },
         {
           "name": "system_program",
@@ -374,16 +523,7 @@
     },
     {
       "name": "vote_repo",
-      "discriminator": [
-        0,
-        81,
-        5,
-        105,
-        242,
-        99,
-        182,
-        117
-      ],
+      "discriminator": [0, 81, 5, 105, 242, 99, 182, 117],
       "accounts": [
         {
           "name": "repo",
@@ -392,12 +532,7 @@
             "seeds": [
               {
                 "kind": "const",
-                "value": [
-                  114,
-                  101,
-                  112,
-                  111
-                ]
+                "value": [114, 101, 112, 111]
               },
               {
                 "kind": "arg",
@@ -421,12 +556,7 @@
             "seeds": [
               {
                 "kind": "const",
-                "value": [
-                  118,
-                  111,
-                  116,
-                  101
-                ]
+                "value": [118, 111, 116, 101]
               },
               {
                 "kind": "arg",
@@ -463,43 +593,24 @@
   ],
   "accounts": [
     {
+      "name": "Admin",
+      "discriminator": [244, 158, 220, 65, 8, 73, 4, 65]
+    },
+    {
       "name": "Repo",
-      "discriminator": [
-        214,
-        15,
-        57,
-        132,
-        228,
-        152,
-        190,
-        235
-      ]
+      "discriminator": [214, 15, 57, 132, 228, 152, 190, 235]
     },
     {
       "name": "Subscription",
-      "discriminator": [
-        64,
-        7,
-        26,
-        135,
-        102,
-        132,
-        98,
-        33
-      ]
+      "discriminator": [64, 7, 26, 135, 102, 132, 98, 33]
+    },
+    {
+      "name": "Tokenomics",
+      "discriminator": [252, 176, 228, 183, 130, 36, 15, 194]
     },
     {
       "name": "Vote",
-      "discriminator": [
-        96,
-        91,
-        104,
-        57,
-        145,
-        35,
-        172,
-        155
-      ]
+      "discriminator": [96, 91, 104, 57, 145, 35, 172, 155]
     }
   ],
   "errors": [
@@ -522,6 +633,21 @@
       "code": 6003,
       "name": "UnapprovedRepo",
       "msg": "Repo needs to be approved"
+    },
+    {
+      "code": 6004,
+      "name": "AdminOnly",
+      "msg": "Admin only"
+    },
+    {
+      "code": 6005,
+      "name": "MaxSupplyExceeded",
+      "msg": "Max supply exceeded"
+    },
+    {
+      "code": 6006,
+      "name": "InvalidUser",
+      "msg": "Invalid user"
     }
   ],
   "types": [
@@ -549,6 +675,28 @@
                 "name": "Coupon"
               }
             }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Admin",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "signer",
+            "type": "pubkey"
+          },
+          {
+            "name": "be",
+            "type": {
+              "array": ["u8", 64]
+            }
+          },
+          {
+            "name": "team_wallet",
+            "type": "pubkey"
           }
         ]
       }
@@ -617,6 +765,60 @@
           {
             "name": "recovery_id",
             "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InitPayload",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "signer",
+            "type": "pubkey"
+          },
+          {
+            "name": "team_wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "be",
+            "type": {
+              "array": ["u8", 64]
+            }
+          },
+          {
+            "name": "decimals",
+            "type": "u8"
+          },
+          {
+            "name": "uri",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "name": "total_supply",
+            "type": "u64"
+          },
+          {
+            "name": "rewards_percentage",
+            "type": "u8"
+          },
+          {
+            "name": "team_percentage",
+            "type": "u8"
+          },
+          {
+            "name": "tokens_per_commit",
+            "type": "u64"
           }
         ]
       }
@@ -769,6 +971,42 @@
           {
             "name": "user_id",
             "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Tokenomics",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "rewards_percentage",
+            "type": "u8"
+          },
+          {
+            "name": "team_percentage",
+            "type": "u8"
+          },
+          {
+            "name": "total_supply",
+            "type": "u64"
+          },
+          {
+            "name": "tokens_per_commit",
+            "type": "u64"
+          },
+          {
+            "name": "current_rewarded_supply",
+            "type": "u64"
+          },
+          {
+            "name": "current_team_supply",
+            "type": "u64"
           }
         ]
       }

@@ -3,10 +3,11 @@ import {
   AnchorError,
   Idl,
   Program,
+  utils,
   web3,
 } from "@coral-xyz/anchor";
 import { Repo } from "../data/repo";
-import { Connection, PublicKey } from "@solana/web3.js";
+import { PublicKey } from "@solana/web3.js";
 import { AnchorWallet } from "@solana/wallet-adapter-react";
 import { Vote, VoteAdapter } from "../data/vote";
 import { Subscription } from "../data/subscription";
@@ -104,7 +105,7 @@ export class Query {
   }
 
   async getBalance(address?: string) {
-    const tokenAddress = Query.getTokenAddress(
+    const tokenAddress = Query.getAta(
       address ?? this.wallet.publicKey.toString()
     );
     try {
@@ -118,17 +119,13 @@ export class Query {
     }
   }
 
-  static getTokenAddress(address: string | PublicKey) {
+  static getAta(address: string | PublicKey) {
     const owner =
       typeof address === "string" ? new PublicKey(address) : address;
-    const [tokenAddress] = PublicKey.findProgramAddressSync(
-      [
-        owner.toBuffer(),
-        config.tokenProgramId.toBuffer(),
-        config.mint.toBuffer(),
-      ],
-      config.associatedTokenProgramId
-    );
+    const tokenAddress = utils.token.associatedAddress({
+      mint: config.mint,
+      owner: owner,
+    });
 
     return tokenAddress;
   }
